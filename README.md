@@ -1,5 +1,6 @@
 # langchain-resume-analyzer
 📄 LangChain Resume Analyzer
+
 An AI-powered resume analyzer built using Python, LangChain, OpenAI, and Streamlit. This tool helps users get detailed, context-aware feedback on their resumes, identifying areas of improvement and matching job requirements effectively.
 
 🚀 Features

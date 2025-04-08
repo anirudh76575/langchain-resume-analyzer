@@ -14,19 +14,13 @@ if uploaded_file and job_role:
         with st.spinner("Analyzing your resume..."):
             resume_text = extract_text_from_pdf(uploaded_file)
             feedback_dict = analyze_resume(resume_text)
-            feedback = f"""
-            **Total Lines:** {feedback_dict['total_lines']}
-            **Word Count:** {feedback_dict['word_count']}
-            **Matched Keywords:** {', '.join(feedback_dict['matched_keywords'])}
-            **Education:** {feedback_dict['education']}
-            """
+
             st.success("✅ Analysis Complete")
-            st.markdown("### 🔍 Feedback from AI:")
-
+            st.markdown("### 📊 Resume Metrics:")
             st.markdown(f"""
-            **📄 Total Lines:** {feedback['total_lines']}  
-            **🔢 Word Count:** {feedback['word_count']}  
-            **🧠 Matched Keywords:** {', '.join(feedback['matched_keywords']) or "None"}  
-            **🎓 Education:** {feedback['education']}
-            """)
-
+**📄 Total Lines:** {feedback_dict.get('total_lines', 'N/A')}  
+**🔢 Word Count:** {feedback_dict.get('word_count', 'N/A')}  
+**🧠 Matched Keywords:** {', '.join(feedback_dict.get('matched_keywords', [])) or 'None'}  
+**🎓 Education:** {feedback_dict.get('education', 'Not Found')}
+""")
+ 

@@ -13,7 +13,13 @@ if uploaded_file and job_role:
     if st.button("Analyze"):
         with st.spinner("Analyzing your resume..."):
             resume_text = extract_text_from_pdf(uploaded_file)
-            feedback = analyze_resume(resume_text, job_role)
+            feedback_dict = analyze_resume(resume_text)
+            feedback = f"""
+            **Total Lines:** {feedback_dict['total_lines']}
+            **Word Count:** {feedback_dict['word_count']}
+            **Matched Keywords:** {', '.join(feedback_dict['matched_keywords'])}
+            **Education:** {feedback_dict['education']}
+            """
             st.success("✅ Analysis Complete")
             st.markdown("### 🔍 Feedback from AI:")
             st.markdown(feedback)

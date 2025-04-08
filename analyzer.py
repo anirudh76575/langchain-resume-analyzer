@@ -24,13 +24,14 @@ def analyze_resume(text):
     found_keywords = [kw for kw in keywords if kw.lower() in text.lower()]
     analysis["matched_keywords"] = found_keywords
 
-    # Improved education detection
+    # Education detection (basic)
+    education_terms = ["bachelor", "b.tech", "undergraduate", "master", "m.tech", "postgraduate", "mca", "bca","M.C.A.","B.C.A."]
     education_text = text.lower()
-    if any(term in education_text for term in ["bachelor", "b.tech", "undergraduate", "bca"]):
+    if any(term in education_text for term in ["bachelor", "b.tech", "undergraduate", "bca","B.C.A."]):
         analysis["education"] = "Bachelor's"
-    elif any(term in education_text for term in ["master", "m.tech", "postgraduate", "mca"]):
+    elif any(term in education_text for term in ["master", "m.tech", "postgraduate", "mca","M.C.A."]):
         analysis["education"] = "Master's"
     else:
         analysis["education"] = "Not Found"
-
+    
     return analysis

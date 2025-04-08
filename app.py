@@ -1,6 +1,5 @@
 import streamlit as st
 from analyzer import extract_text_from_pdf, analyze_resume
-import tempfile
 
 st.set_page_config(page_title="LangChain Resume Analyzer", layout="centered")
 
@@ -11,13 +10,9 @@ uploaded_file = st.file_uploader("Upload your resume (PDF)", type=["pdf"])
 job_role = st.text_input("Enter the job role you're applying for", value="Data Scientist")
 
 if uploaded_file and job_role:
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as temp_file:
-        temp_file.write(uploaded_file.read())
-        resume_path = temp_file.name
-
     if st.button("Analyze"):
         with st.spinner("Analyzing your resume..."):
-            resume_text = extract_text_from_pdf(resume_path)
+            resume_text = extract_text_from_pdf(uploaded_file)
             feedback = analyze_resume(resume_text, job_role)
             st.success("✅ Analysis Complete")
             st.markdown("### 🔍 Feedback from AI:")

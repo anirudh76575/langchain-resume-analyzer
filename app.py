@@ -22,4 +22,11 @@ if uploaded_file and job_role:
             """
             st.success("✅ Analysis Complete")
             st.markdown("### 🔍 Feedback from AI:")
-            st.markdown(feedback)
+
+            st.markdown(f"""
+            **📄 Total Lines:** {feedback['total_lines']}  
+            **🔢 Word Count:** {feedback['word_count']}  
+            **🧠 Matched Keywords:** {', '.join(feedback['matched_keywords']) or "None"}  
+            **🎓 Education:** {feedback['education']}
+            """)
+
